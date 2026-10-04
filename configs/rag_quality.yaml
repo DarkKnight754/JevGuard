@@ -1,0 +1,20 @@
+# JevGuard — RAG Quality Controller Configuration (Phase 6)
+
+rag_version: "1.0"
+
+retrieval:
+  top_k: 10          # Documents retrieved before Jev filtering
+  min_relevance: 0.6 # Minimum Jev relevance score to pass through
+  max_context_docs: 4 # Maximum documents sent to LLM after filtering
+
+jev_questions:
+  - id: relevance
+    type: score
+    question: "How relevant is this document to the query?"
+  - id: sufficiency
+    type: score
+    question: "Does the document contain enough information to answer the query?"
+  - id: needs_more_retrieval
+    type: choice
+    choices: [yes, no]
+    question: "Is additional retrieval necessary to answer the query?"

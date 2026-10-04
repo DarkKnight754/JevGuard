@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# JevGuard — Model Routing Configuration
+# Used by Phase 4: Adaptive LLM Router
+#
+# All models listed here are FREE and open-source via Ollama.
+# Groq API is listed as an alternative where applicable.
+#
+# Category names MUST match:
+#   - _VALID_MODELS in backend/app/decision/groq_provider.py
+#   - _apply_rules() return values in fallback_provider.py
+# ─────────────────────────────────────────────────────────────────────────────
+
+routing_version: "1.0"
+default_provider: ollama   # local, free, no API key
+
+categories:
+
+  small:
+    description: "Fast, lightweight — simple factual queries, low complexity."
+    # Ollama (free, local) — pull with: docker-compose exec ollama ollama pull llama3.2:3b
+    model_id: "llama3.2:3b"
+    provider: ollama
+    ollama_url: "http://ollama:11434"
+    max_context_tokens: 4096
+    # Alternative — Groq free tier (14,400 req/day):
+    # model_id: "llama-3.1-8b-instant"
+    # provider: groq
+
+  large:
+    description: "Large general-purpose — complex tasks, long contexts."
+    # Ollama (free, local) — pull with: docker-compose exec ollama ollama pull llama3.1:8b
+    model_id: "llama3.1:8b"
+    provider: ollama
+    ollama_url: "http://ollama:11434"
+    max_context_tokens: 32768
+    # Alternative — Groq free tier (1,000 req/day):
+    # model_id: "llama-3.3-70b-versatile"
+    # provider: groq
+
+  code:
+    description: "Code-specialised — programming, debugging, code review."
+    # Ollama (free, local) — pull with: docker-compose exec ollama ollama pull qwen2.5-coder:7b
+    model_id: "qwen2.5-coder:7b"
+    provider: ollama
+    ollama_url: "http://ollama:11434"
+    max_context_tokens: 8192
+
+  reasoning:
+    description: "Step-by-step reasoning — multi-hop, analytical, high complexity."
+    # Ollama (free, local) — pull with: docker-compose exec ollama ollama pull deepseek-r1:7b
+    model_id: "deepseek-r1:7b"
+    provider: ollama
+    ollama_url: "http://ollama:11434"
+    max_context_tokens: 8192
+
+  vision:
+    description: "Multimodal — image + text input."
+    # Ollama (free, local) — pull with: docker-compose exec ollama ollama pull llava:7b
+    model_id: "llava:7b"
+    provider: ollama
+    ollama_url: "http://ollama:11434"
+    max_context_tokens: 4096

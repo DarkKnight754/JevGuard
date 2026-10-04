@@ -1,0 +1,29 @@
+# JevGuard — Tool Guard Configuration (Phase 5)
+# Defines risk tiers for tool call types.
+# Jev evaluates tool calls against these tiers; the deterministic
+# policy engine enforces the final decision.
+
+tool_guard_version: "1.0"
+
+# Risk tiers — first matching tier wins.
+# Action: auto | verify | block | human_review
+tiers:
+  - name: destructive
+    tool_call_types: [delete, drop, truncate, wipe]
+    default_action: human_review
+    jev_evaluated: true
+
+  - name: write
+    tool_call_types: [write, update, insert, patch, post]
+    default_action: verify
+    jev_evaluated: true
+
+  - name: execute
+    tool_call_types: [execute, run, eval, shell]
+    default_action: verify
+    jev_evaluated: true
+
+  - name: read
+    tool_call_types: [read, get, list, search, fetch]
+    default_action: auto
+    jev_evaluated: false

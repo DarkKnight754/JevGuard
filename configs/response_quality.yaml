@@ -1,0 +1,24 @@
+# JevGuard — LLM Response Evaluator Configuration (Phase 7)
+
+evaluator_version: "1.0"
+
+jev_questions:
+  - id: relevance
+    type: score
+    question: "How relevant is the response to the original question?"
+  - id: completeness
+    type: score
+    question: "How complete is the response?"
+  - id: consistency
+    type: score
+    question: "How consistent is the response with the supplied context?"
+  - id: quality_verdict
+    type: choice
+    choices: [good, uncertain, bad]
+    question: "Overall quality verdict for this response."
+
+thresholds:
+  # NOTE: These are initial defaults. Validate experimentally in Phase 10.
+  good_min_score: 0.75
+  retry_on: [bad]
+  second_model_on: [uncertain]

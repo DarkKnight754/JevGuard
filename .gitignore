@@ -1,0 +1,47 @@
+# Environment — never commit secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (if mapped locally)
+postgres_data/
+qdrant_data/
+
+# Alembic auto-generated (keep versions/ tracked, not __pycache__)
+backend/alembic/__pycache__/
+backend/alembic/versions/__pycache__/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
